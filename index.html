@@ -8,19 +8,25 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    
+
 <div class="monitor">
     <div class="screen">
         <div class="scanlines"></div>
         <div class="terminal">
-            <div id="output">C:\NEW_YEAR_2026> TREE_GENERATOR.EXE</div>
-            <div class="input-line">
-                <span class="prompt">HEIGHT_OF_TREE:</span>
-                <input type="number" id="tree-input" autofocus spellcheck="false">
+            <div id="output"></div> 
+            
+            <div class="input-line" id="input-container" style="display: none;">
+            <span id="prompt-text"></span>
+            <span id="user-input-display"></span>
+            <span class="cursor">_</span>
+            
+            <input type="number" id="tree-input" autofocus>
             </div>
+            
             <div id="tree-display"></div>
         </div>
     </div>
+</div>
 
 </div>
 </body>

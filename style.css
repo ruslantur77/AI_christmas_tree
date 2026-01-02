@@ -1,3 +1,9 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: #1a1a1a;
     display: flex;
@@ -6,68 +12,98 @@ body {
     height: 100vh;
     margin: 0;
     font-family: 'Courier New', Courier, monospace;
+    overflow: hidden;
 }
 
+/* Корпус монитора */
 .monitor {
-    width: 600px;
-    height: 450px;
+    width: 650px;
+    height: 500px;
     background: #333;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: inset 0 0 50px #000;
+    border-radius: 30px;
+    padding: 25px;
+    box-shadow: inset 0 0 60px #000, 0 50px 100px rgba(0,0,0,0.5);
+    border: 8px solid #444; /* Сделаем рамку потолще для солидности */
 }
 
+/* Экран */
 .screen {
     background: #001a00;
+    flex-grow: 1; /* Занимает всё доступное место в мониторе */
     height: 100%;
-    border-radius: 10px;
+    border-radius: 15px;
     position: relative;
-    overflow: hidden;
+    overflow-y: auto;
     padding: 20px;
     color: #00ff00;
-    text-shadow: 0 0 5px #00ff00;
-    animation: fudge 0.1s infinite;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+    border: 2px solid #111; /* Внутренняя каемка экрана */
 }
 
-/* Эффект старых линий */
+/* Линии развертки */
 .scanlines {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
-                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-    background-size: 100% 4px, 3px 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
+    background-size: 100% 4px;
     pointer-events: none;
+    z-index: 10;
+}
+
+/* Терминал и инпут */
+.input-line {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 #tree-input {
-    background: transparent;
-    border: none;
-    color: #00ff00;
-    font-family: inherit;
-    font-size: 1.2rem;
-    outline: none;
-    width: 50px;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
 }
-/* Добавь это к предыдущим стилям */
+
+.cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1.2rem;
+    background: #00ff00;
+    animation: cursor-blink 0.8s infinite;
+}
+
+/* Стили елки */
 #tree-display {
-    display: block;
-    text-align: center; /* Центруем елку */
-    line-height: 1.2;
+    text-align: center;
     margin-top: 20px;
-    font-family: monospace;
-    white-space: pre; /* Сохраняем пробелы и переносы */
+    white-space: pre;
+    font-weight: bold;
 }
 
-@keyframes blink {
-    0%, 100% { opacity: 1; filter: brightness(1.2); }
-    50% { opacity: 0.5; filter: brightness(0.7); }
+/* Цвета гирлянд */
+.star-1 { color: #ff3333; text-shadow: 0 0 10px #ff0000; animation: blink 0.8s infinite; }
+.star-2 { color: #ffff33; text-shadow: 0 0 10px #ffff00; animation: blink 1.2s infinite; }
+.star-3 { color: #33ffff; text-shadow: 0 0 10px #00ffff; animation: blink 1s infinite; }
+.star-default { color: #00ff00; }
+.trunk { color: #8b4513; }
+
+@keyframes cursor-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes blink { 0%, 100% { filter: brightness(1.2); opacity: 1; } 50% { filter: brightness(0.5); opacity: 0.7; } }
+@keyframes fudge { from { transform: translate(0); } to { transform: translate(0.5px, 0.5px); } }
+
+
+.screen::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
 }
 
-/* Цвета для гирлянд */
-.star-1 { color: #ff0000; text-shadow: 0 0 8px #ff0000; animation: blink 1s infinite;} /* Красный */
-.star-2 { color: #ffff00; text-shadow: 0 0 8px #ffff00; animation: blink 1s infinite;} /* Желтый */
-.star-3 { color: #00ffff; text-shadow: 0 0 8px #00ffff; animation: blink 1s infinite;} /* Голубой */
-.star-default { color: #00ff00; } /* Основной зеленый */
+/* Скрываем для Firefox */
+.screen {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
 
-/* Ствол */
-.trunk { color: #8b4513; text-shadow: none; }
+@media screen and (min-width: 768px) {
+    .monitor {
+        zoom: 1.3;
+    }
+}
