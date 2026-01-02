@@ -8,7 +8,7 @@ export const API_CONFIG = {
     OPENROUTER_KEY: 'ваш_ключ_тут'
 };
 ```
-2. А в ``ai.js`` раскомментируете 2 строчку:
+2. А в файле ``ai.js`` раскомментируете 2 строчку:
 
 ```
 // import { API_CONFIG } from './config.js';
