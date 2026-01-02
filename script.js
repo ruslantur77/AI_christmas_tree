@@ -4,6 +4,7 @@ const inputContainer = document.getElementById('input-container');
 const input = document.getElementById('tree-input');
 const userInputDisplay = document.getElementById('user-input-display');
 const display = document.getElementById('tree-display');
+import { getAiGreeting } from './ai.js';
 
 // 1. Эффект печати текста
 async function typeWriter(text, element, speed = 40) {
@@ -15,11 +16,11 @@ async function typeWriter(text, element, speed = 40) {
 
 // 2. Инициализация терминала
 async function init() {
-    await typeWriter("C:\\SYSTEM\\2026> LOADING_HOLIDAY_PROTOCOL...", output);
+    await typeWriter("C:\\SYSTEM\\NEW_YEAR> ЗАГРУЗКА NEW_YEAR_PROTOCOL...", output);
     await new Promise(res => setTimeout(res, 600));
     
     inputContainer.style.display = "flex";
-    await typeWriter("ENTER TREE HEIGHT: ", promptText);
+    await typeWriter("ВВЕДИТЕ ВЫСОТУ ЁЛКИ: ", promptText);
     input.focus();
 }
 
@@ -39,7 +40,7 @@ input.addEventListener('keypress', async (e) => {
             const errorMsg = document.createElement('div');
             errorMsg.style.color = '#ff3333'; 
             display.appendChild(errorMsg);
-            await typeWriter("ERROR: INVALID_HEIGHT. RANGE_REQUIRED: 1-20", errorMsg, 30);
+            await typeWriter("ОШИБКА: НЕПРАВИЛЬНАЯ ВЫСОТА. ОЖИДАЕТСЯ: 1-20", errorMsg, 30);
             return;
         }
         input.value = '';
@@ -47,7 +48,7 @@ input.addEventListener('keypress', async (e) => {
         
         const loadingMsg = document.createElement('div');
         display.appendChild(loadingMsg);
-        await typeWriter("GENERATING_HOLIDAY_TREE...", loadingMsg, 30);
+        await typeWriter("СОЗДАНИЕ ЕЛКИ...", loadingMsg, 30);
         
         await new Promise(res => setTimeout(res, 500));
         display.innerHTML = '';
@@ -85,6 +86,24 @@ async function drawTree(h) {
     const trunk = document.createElement('div');
     trunk.innerHTML = '<span class="trunk">| |</span>';
     display.appendChild(trunk);
+    await new Promise(res => setTimeout(res, 500));
+
+    // Блок для AI сообщения
+    const aiBox = document.createElement('div');
+    aiBox.style.marginTop = "25px";
+    aiBox.style.paddingTop = "15px";
+    aiBox.style.borderTop = "1px dashed #005500";
+    display.appendChild(aiBox);
+
+    // Статусная строка
+    const statusLine = document.createElement('div');
+    aiBox.appendChild(statusLine);
+    await typeWriter("> ЗАГРУЗКА AI_HOLIDAY_PROTOCOL...", statusLine, 30);
+
+    // Получаем поздравление
+    const greeting = await getAiGreeting(h);
+    statusLine.innerHTML = "";
+    await typeWriter("> AI: " + greeting.toUpperCase(), statusLine, 40);
 }
 
 
