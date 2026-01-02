@@ -1,0 +1,73 @@
+body {
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.monitor {
+    width: 600px;
+    height: 450px;
+    background: #333;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: inset 0 0 50px #000;
+}
+
+.screen {
+    background: #001a00;
+    height: 100%;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00;
+    animation: fudge 0.1s infinite;
+}
+
+/* Эффект старых линий */
+.scanlines {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 4px, 3px 100%;
+    pointer-events: none;
+}
+
+#tree-input {
+    background: transparent;
+    border: none;
+    color: #00ff00;
+    font-family: inherit;
+    font-size: 1.2rem;
+    outline: none;
+    width: 50px;
+}
+/* Добавь это к предыдущим стилям */
+#tree-display {
+    display: block;
+    text-align: center; /* Центруем елку */
+    line-height: 1.2;
+    margin-top: 20px;
+    font-family: monospace;
+    white-space: pre; /* Сохраняем пробелы и переносы */
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; filter: brightness(1.2); }
+    50% { opacity: 0.5; filter: brightness(0.7); }
+}
+
+/* Цвета для гирлянд */
+.star-1 { color: #ff0000; text-shadow: 0 0 8px #ff0000; animation: blink 1s infinite;} /* Красный */
+.star-2 { color: #ffff00; text-shadow: 0 0 8px #ffff00; animation: blink 1s infinite;} /* Желтый */
+.star-3 { color: #00ffff; text-shadow: 0 0 8px #00ffff; animation: blink 1s infinite;} /* Голубой */
+.star-default { color: #00ff00; } /* Основной зеленый */
+
+/* Ствол */
+.trunk { color: #8b4513; text-shadow: none; }
