@@ -1,5 +1,5 @@
 // ai.js
-import { API_CONFIG } from './config.js';
+// import { API_CONFIG } from './config.js';
 export async function getAiGreeting(treeHeight) {
     let API_KEY = '%%API_KEY%%';
     
