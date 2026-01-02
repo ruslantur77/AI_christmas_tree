@@ -1,7 +1,11 @@
 // ai.js
 import { API_CONFIG } from './config.js';
 export async function getAiGreeting(treeHeight) {
-    const API_KEY = API_CONFIG.OPENROUTER_KEY; // Сюда вставь свой ключ
+    let API_KEY = '%%API_KEY%%';
+    
+    if (API_KEY === '%%' + 'API_KEY' + '%%') { 
+        API_KEY = API_CONFIG.OPENROUTER_KEY;
+    }
     
     const prompt = `Поздравь пользователя с новым годом и пожелай ему что-нибудь хорошее. Одно предложение без маркдаунов. Без упоминания года. Разрешается использовать специальные символы и японские эмодзи. НЕ разрешается использовать эмодзи.`;
 
