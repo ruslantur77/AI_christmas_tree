@@ -1,5 +1,6 @@
 ## AI Christmas tree – мой мини-проект с мини-терминалом и поздравлением от ИИ 🌲🤖
-<img width="1053" height="563" alt="image" src="https://github.com/user-attachments/assets/c39351ce-b5d9-45b5-9ddf-3e1f3131f336" />
+<img width="1034" height="562" alt="image" src="https://github.com/user-attachments/assets/5b440818-79dc-474b-8b7c-f80d2fea27e0" />
+
 
 
 Запуск:
